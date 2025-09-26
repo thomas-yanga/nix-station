@@ -41,14 +41,14 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
-  
+
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     # Additional locale settings for Chinese environment
       inputMethod = {
-	enable = true;
-	type = "ibus";
+        enable = true;
+        type = "ibus";
         ibus.engines = with pkgs.ibus-engines; [
         libpinyin
         ];
@@ -114,14 +114,8 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yangdi = {
-    isNormalUser = true;
-    description = "yangdi";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-    vim zsh tmux tree pciutils util-linux procps inetutils nmap arp-scan axel dconf htop
-    ];
+  users.users.yangdi = { pkgs, unstable, ... }:{
+    imports = [ ./users/yangdi.nix ];
   };
 
   # Install firefox and zsh
