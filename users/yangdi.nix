@@ -1,49 +1,49 @@
 { config, pkgs, unstable, ... }:
 
 {
-  home.packages = with pkgs; [
-    # Essential user tools (keep non-i3 tools)
-    vim tmux git tree fastfetch alacritty
-    home-manager
-    # Chinese Input Method (KEEP)
-    ibus ibus-engines.libpinyin
-    # Network tools
-    lftp
-    # Fonts (user-level fonts)
-    cascadia-code wqy_zenhei noto-fonts-cjk-sans
-  ];
+  # 使用 config 属性集包裹，防止 Home Manager 顶级选项与 NixOS 系统选项冲突
+  config = {
 
-  home.file.".vimrc".source = ./dotfiles/.vimrc;
-  home.file.".zshrc".source = ./dotfiles/.zshrc;
-  home.file.".tmux.conf".source = ./dotfiles/.tmux.conf;
-  home.file.".config/alacritty/alacritty.toml".source = ./dotfiles/alacritty.toml;
+    # 1. home 属性集
+    home = {
+      packages = with pkgs; [
+        vim tmux git tree fastfetch alacritty home-manager
+        ibus ibus-engines.libpinyin
+        lftp
+        cascadia-code wqy_zenhei noto-fonts-cjk-sans
+      ];
 
-  # Enable programs managed by home-manager
-  programs.zsh.enable = true;
-  programs.tmux.enable = true;
-
-  # Environment variables for IBus input method (KEEP)
-  home.sessionVariables = {
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
-  };
-
-  fonts = {
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        serif = [ "Noto Serif" "WenQuanYi Zen Hei" ];
-        sansSerif = [ "Noto Sans" "WenQuanYi Zen Hei" ];
-        monospace = [ "Cascadia Mono NF" "WenQuanYi Zen Hei" ];
+      file = {
+        ".vimrc".source = ./dotfiles/.vimrc;
+        ".zshrc".source = ./dotfiles/.zshrc;
+        ".tmux.conf".source = ./dotfiles/.tmux.conf;
+        ".config/alacritty/alacritty.toml".source = ./dotfiles/alacritty.toml;
       };
+
+      sessionVariables = {
+        GTK_IM_MODULE = "ibus";
+        QT_IM_MODULE = "ibus";
+        XMODIFIERS = "@im=ibus";
+      };
+
+      stateVersion = "25.05";
     };
-  };
 
-  programs.alacritty = {
-    enable = true;
-    #configFile = ./dotfiles/alacritty.toml;
-  };
+    # 2. programs 属性集 (Home Manager 顶层)
+    programs.zsh.enable = true;
+    programs.tmux.enable = true;
+    programs.alacritty.enable = true;
 
-  home.stateVersion = "25.05";
+    # 3. fonts 属性集 (Home Manager 顶层)
+    #fonts = {
+    #  fontconfig = {
+    #    enable = true;
+    #    defaultFonts = {
+    #      serif = [ "Noto Serif" "WenQuanYi Zen Hei" ];
+    #      sansSerif = [ "Noto Sans" "WenQuanYi Zen Hei" ];
+    #      monospace = [ "Cascadia Mono NF" "WenQuanYi Zen Hei" ];
+    #    };
+    #  };
+    #};
+  };
 }

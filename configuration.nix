@@ -115,7 +115,9 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yangdi = { pkgs, unstable, ... }:{
-    imports = [ ./users/yangdi.nix ];
+    isNormalUser = true;
+	description = "YangDi";
+	extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Install firefox and zsh
@@ -130,7 +132,7 @@
       home.packages = with pkgs; [
         # Essential user tools (keep non-i3 tools)
         vim tmux git tree fastfetch alacritty
-	home-manager
+	    home-manager
         # Chinese Input Method (KEEP)
         ibus ibus-engines.libpinyin
         # Network tools
@@ -161,12 +163,10 @@
           };
         };
       };
-      
       programs.alacritty = {
         enable = true;
         #configFile = ./dotfiles/alacritty.toml;
       };
-      
       home.stateVersion = "25.05";
     };
   };
