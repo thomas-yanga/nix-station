@@ -1,0 +1,34 @@
+[window]
+opacity = 0.9
+padding.x = 10
+padding.y = 10
+decorations = "Full"
+
+[font]
+normal = { family = "Cascadia Mono", style = "semi Bold"}
+bold.family = "Cascadia Mono NF"
+italic.family = "Cascadia Mono NF"
+bold_italic.family = "Cascadia Mono NF"
+size = 13.0
+
+[general]
+live_config_reload = true
+#import = [ "~/.config/alacritty/themes/themes/one_light.toml" ]
+import = [ "~/.config/alacritty/themes/themes/tomorrow_night_bright.toml" ]
+#import = [ "~/.config/alacritty/themes/themes/xterm.toml" ]
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+
+[terminal]
+osc52 = "CopyPaste"
+
+[keyboard]
+bindings = [
+  { key = "C", mods = "Super", action = "Copy" },
+  { key = "V", mods = "Super", action = "Paste" },
+  { key = "T", mods = "Super", action = "SpawnNewInstance" },
+ # { key = "W", mods = "Super", action = "Quit" },
+  { key = "D", mods = "Super", action = "Minimize" },
+  { key = "F", mods = "Super", action = "SearchForward" },
+]

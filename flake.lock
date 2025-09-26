@@ -1,0 +1,41 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758463745,
+        "narHash": "sha256-uhzsV0Q0I9j2y/rfweWeGif5AWe0MGrgZ/3TjpDYdGA=",
+        "type": "tarball",
+        "url": "https://githubfast.com/nix-community/home-manager/archive/release-25.05.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://githubfast.com/nix-community/home-manager/archive/release-25.05.tar.gz"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1758589230,
+        "narHash": "sha256-zMTCFGe8aVGTEr2RqUi/QzC1nOIQ0N1HRsbqB4f646k=",
+        "type": "tarball",
+        "url": "https://githubfast.com/NixOS/nixpkgs/archive/nixos-25.05.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://githubfast.com/NixOS/nixpkgs/archive/nixos-25.05.tar.gz"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
